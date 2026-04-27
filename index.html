@@ -30,7 +30,6 @@
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         body { background-color: #ffffff; -webkit-tap-highlight-color: transparent; }
         
-        /* 모바일 최적화 셀렉트 박스 스타일 */
         select {
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -64,38 +63,29 @@
             <!-- Step 1: Input Form -->
             <div id="step-input" class="animate-in fade-in duration-700">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl font-black text-fionynavy mb-3 leading-tight">나의 사주<br>브랜드 컬러 진단</h2>
-                    <p class="text-slate-500 text-base font-medium">당신이 태어난 날의 기운을 분석하여<br><span class="text-fionynavy border-b-2 border-peonypink/30">성공을 부르는 퍼스널 컬러</span>를 찾아드립니다.</p>
+                    <h2 class="text-3xl font-black text-fionynavy mb-3 leading-tight uppercase">Saju Color<br>Diagnosis</h2>
+                    <p class="text-slate-500 text-base font-medium">당신이 태어난 날의 기운을 분석하여<br><span class="text-fionynavy border-b-2 border-peonypink/30">성공을 부르는 브랜드 컬러</span>를 제안합니다.</p>
                 </div>
 
                 <form id="saju-form" class="space-y-8">
                     <div>
-                        <label class="block text-sm font-bold text-fionynavy mb-4 tracking-wide uppercase">생년월일 입력 (양력)</label>
+                        <label class="block text-sm font-bold text-fionynavy mb-4 tracking-wide uppercase">Birthdate (Solar)</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <!-- Year Select -->
-                            <div class="relative">
-                                <select id="birth-year" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
-                                    <option value="" disabled selected>년</option>
-                                </select>
-                            </div>
-                            <!-- Month Select -->
-                            <div class="relative">
-                                <select id="birth-month" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
-                                    <option value="" disabled selected>월</option>
-                                </select>
-                            </div>
-                            <!-- Day Select -->
-                            <div class="relative">
-                                <select id="birth-day" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
-                                    <option value="" disabled selected>일</option>
-                                </select>
-                            </div>
+                            <select id="birth-year" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
+                                <option value="" disabled selected>년</option>
+                            </select>
+                            <select id="birth-month" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
+                                <option value="" disabled selected>월</option>
+                            </select>
+                            <select id="birth-day" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
+                                <option value="" disabled selected>일</option>
+                            </select>
                         </div>
                     </div>
 
                     <button type="submit" 
-                            class="w-full bg-fionynavy text-white font-bold py-5 rounded-2xl hover:bg-slate-800 active:scale-[0.98] transition-all text-lg shadow-xl shadow-slate-200">
-                        진단 결과 확인하기
+                            class="w-full bg-fionynavy text-white font-bold py-5 rounded-2xl hover:bg-slate-800 active:scale-[0.98] transition-all text-lg shadow-xl shadow-slate-200 uppercase tracking-widest">
+                        Check Results
                     </button>
                 </form>
             </div>
@@ -103,8 +93,8 @@
             <!-- Step 2: Loading -->
             <div id="step-loading" class="hidden flex flex-col items-center justify-center text-center py-20">
                 <div class="spinner mb-8"></div>
-                <h3 class="text-xl font-bold text-fionynavy mb-2">고객님의 명식을 분석 중입니다</h3>
-                <p class="text-slate-400 text-sm font-medium">FIONY의 알고리즘이 우주의 기운을 읽고 있습니다...</p>
+                <h3 class="text-xl font-bold text-fionynavy mb-2">명식을 분석 중입니다</h3>
+                <p class="text-slate-400 text-sm font-medium">FIONY BRANDS의 알고리즘이 우주의 기운을 읽고 있습니다...</p>
             </div>
 
             <!-- Step 3: Result -->
@@ -130,19 +120,23 @@
 
                             <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
                                 <p class="text-xs font-black text-slate-400 mb-3 tracking-tighter uppercase">Personal Insight</p>
-                                <p id="result-message" class="text-[15px] text-slate-600 font-medium leading-relaxed break-keep">
+                                <p id="result-message" class="text-[14px] text-slate-600 font-medium leading-relaxed break-keep">
                                     분석 결과가 여기에 표시됩니다.
+                                </p>
+                                <!-- Disclaimer Added Here -->
+                                <p class="mt-4 text-[11px] text-slate-400 leading-normal border-t border-slate-200 pt-3">
+                                    * 본 진단 내용은 일주(日柱)를 기반으로 한 대략적인 가이드입니다. 비즈니스 환경과 전체 명식을 고려한 구체적이고 정밀한 분석은 전문 컨설팅을 통해 확인하실 수 있습니다.
                                 </p>
                             </div>
                         </div>
 
                         <!-- CTA Button -->
-                        <div class="pt-4 space-y-4">
+                        <div class="pt-2 space-y-5">
                             <a href="https://www.instagram.com/fiony.brands/" target="_blank" 
-                               class="block w-full bg-peonypink text-white text-center font-bold py-5 rounded-2xl hover:bg-pink-600 active:scale-[0.98] transition-all shadow-lg shadow-pink-100">
+                               class="block w-full bg-peonypink text-white text-center font-bold py-5 rounded-2xl hover:bg-pink-600 active:scale-[0.98] transition-all shadow-lg shadow-pink-100 text-lg">
                                 1:1 브랜드 컨설팅 신청하기
                             </a>
-                            <button onclick="resetForm()" class="block w-full text-center text-xs font-bold text-slate-300 hover:text-slate-500 tracking-widest uppercase transition-colors">
+                            <button onclick="resetForm()" class="block w-full text-center text-xs font-black text-slate-900 hover:opacity-70 tracking-[0.3em] uppercase transition-all py-2">
                                 RE-TEST
                             </button>
                         </div>
@@ -154,11 +148,10 @@
     </main>
 
     <footer class="w-full text-center py-10 text-[10px] font-bold text-slate-300 tracking-[0.2em] uppercase">
-        <p>© 2026 FIONY BRANDS. PRIVATE & CONFIDENTIAL.</p>
+        <p>© 2026 FIONY BRANDS. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
-        // 날짜 선택기 데이터 생성 (1950 ~ 현재 연도)
         const yearSelect = document.getElementById('birth-year');
         const monthSelect = document.getElementById('birth-month');
         const daySelect = document.getElementById('birth-day');
@@ -166,22 +159,17 @@
 
         for (let i = currentYear; i >= 1950; i--) {
             const opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = i;
+            opt.value = i; opt.innerHTML = i;
             yearSelect.appendChild(opt);
         }
-
         for (let i = 1; i <= 12; i++) {
             const opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = i;
+            opt.value = i; opt.innerHTML = i;
             monthSelect.appendChild(opt);
         }
-
         for (let i = 1; i <= 31; i++) {
             const opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = i;
+            opt.value = i; opt.innerHTML = i;
             daySelect.appendChild(opt);
         }
 
@@ -191,35 +179,35 @@
                 bgClass: 'bg-wood',
                 colors: '포레스트 그린 & 세이지',
                 keywords: '신뢰, 곧음, 생명력',
-                message: '당신의 브랜드는 뿌리 깊은 나무와 같습니다. 가벼운 유행을 좇기보다 묵직한 신뢰를 시각화할 때 가장 높이 성장합니다. 포레스트 그린의 깊이와 세이지 톤의 편안함이 당신의 기운을 보호하고 비즈니스를 단단하게 키워냅니다.'
+                message: '당신의 브랜드는 뿌리 깊은 나무와 같습니다. 가벼운 유행을 좇기보다 묵직한 신뢰를 시각화할 때 가장 높이 성장합니다. 포레스트 그린의 깊이와 세이지 톤의 편안함이 브랜드의 기운을 보호합니다.'
             },
             '火': {
                 name: '火 (확산과 열정의 기운)',
                 bgClass: 'bg-fire',
                 colors: '비비드 레드 & 딥 버건디',
                 keywords: '매력, 발산, 재탄생',
-                message: '정체된 기운을 태우고 새롭게 일어서는 재탄생의 불꽃입니다. 무난한 무채색 속에 숨지 마세요. 비비드 레드와 딥 버건디로 당신의 열정과 에너지를 과감하게 발산할 때 비로소 고객을 강력하게 끌어당깁니다.'
+                message: '정체된 기운을 태우고 새롭게 일어서는 재탄생의 불꽃입니다. 무난한 무채색 속에 숨지 마세요. 비비드 레드와 딥 버건디로 당신의 에너지를 과감하게 발산할 때 비로소 고객을 강력하게 끌어당깁니다.'
             },
             '土': {
                 name: '土 (포용과 안정의 기운)',
                 bgClass: 'bg-earth',
                 colors: '어스 브라운 & 웜 베이지',
                 keywords: '중심, 따뜻함, 무게감',
-                message: '모든 것을 품어내는 넓은 땅처럼, 고객에게 안정감을 주는 웜 베이지와 어스 브라운이 당신의 무기가 됩니다. 화려한 장식보다 여백의 미와 따뜻한 온도를 살릴 때 브랜드의 독보적인 품격이 완성됩니다.'
+                message: '모든 것을 품어내는 넓은 땅처럼, 고객에게 안정감을 주는 웜 베이지와 어스 브라운이 당신의 무기가 됩니다. 화려한 장식보다 여백의 미를 살릴 때 브랜드의 독보적인 품격이 완성됩니다.'
             },
             '金': {
                 name: '金 (정밀과 결단의 기운)',
                 bgClass: 'bg-metal',
                 colors: '실버 & 차콜 모노크롬',
                 keywords: '전문성, 예리함, 하이엔드',
-                message: '불필요한 것을 덜어내는 정밀한 결단력이 핵심입니다. 실버와 차콜 모노크롬의 미니멀하고 날카로운 디자인이 당신의 전문성을 극대화합니다. 차갑지만 가장 세련된 하이엔드 무드가 어울리는 명식입니다.'
+                message: '불필요한 것을 덜어내는 정밀한 결단력이 핵심입니다. 실버와 차콜 모노크롬의 미니멀하고 날카로운 디자인이 당신의 전문성을 극대화합니다. 세련된 하이엔드 무드가 어울리는 명식입니다.'
             },
             '水': {
                 name: '水 (유연과 지혜의 기운)',
                 bgClass: 'bg-water',
                 colors: '딥 네이비 & 미드나이트',
                 keywords: '깊이, 유연함, 연결',
-                message: '어디로든 유연하게 스며드는 물의 지혜를 가졌습니다. 얕고 가벼운 톤보다는 깊이감 있는 딥 네이비와 미드나이트 블루를 활용해 진정성을 시각화하세요. 당신의 철학적 깊이가 타겟의 마음을 가장 깊게 움직입니다.'
+                message: '어디로든 유연하게 스며드는 물의 지혜를 가졌습니다. 깊이감 있는 딥 네이비와 미드나이트 블루를 활용해 진정성을 시각화하세요. 당신의 철학적 깊이가 타겟의 마음을 가장 깊게 움직입니다.'
             }
         };
 
@@ -244,11 +232,7 @@
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const y = yearSelect.value;
-            const m = monthSelect.value;
-            const d = daySelect.value;
-
-            const elementKey = calculateOhaeng(y, m, d);
+            const elementKey = calculateOhaeng(yearSelect.value, monthSelect.value, daySelect.value);
             const data = elementData[elementKey];
 
             stepInput.classList.add('hidden');
@@ -258,19 +242,17 @@
             document.getElementById('result-element').innerText = data.name;
             document.getElementById('result-colors').innerText = data.colors;
             document.getElementById('result-keywords').innerText = data.keywords;
-            document.getElementById('result-message').innerText = data.message;
+            document.getElementById('result-message').childNodes[0].textContent = data.message;
 
             setTimeout(() => {
                 stepLoading.classList.add('hidden');
                 stepResult.classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 1500);
+            }, 1200);
         });
 
         function resetForm() {
-            yearSelect.value = "";
-            monthSelect.value = "";
-            daySelect.value = "";
+            yearSelect.value = ""; monthSelect.value = ""; daySelect.value = "";
             stepResult.classList.add('hidden');
             stepInput.classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
