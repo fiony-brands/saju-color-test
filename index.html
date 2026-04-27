@@ -53,7 +53,7 @@
 
     <!-- Header -->
     <header class="w-full bg-white py-6 px-6 text-center border-b border-slate-100">
-        <h1 class="text-fionynavy font-black tracking-[0.2em] text-xl">FIONY BRANDS</h1>
+        <h1 class="text-fionynavy font-black tracking-[0.2em] text-xl uppercase">FIONY BRANDS</h1>
     </header>
 
     <!-- Main Content -->
@@ -63,13 +63,13 @@
             <!-- Step 1: Input Form -->
             <div id="step-input" class="animate-in fade-in duration-700">
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl font-black text-fionynavy mb-3 leading-tight uppercase">Saju Color<br>Diagnosis</h2>
+                    <h2 class="text-3xl font-black text-fionynavy mb-3 leading-tight">사주 컬러 진단</h2>
                     <p class="text-slate-500 text-base font-medium">당신이 태어난 날의 기운을 분석하여<br><span class="text-fionynavy border-b-2 border-peonypink/30">성공을 부르는 브랜드 컬러</span>를 제안합니다.</p>
                 </div>
 
                 <form id="saju-form" class="space-y-8">
                     <div>
-                        <label class="block text-sm font-bold text-fionynavy mb-4 tracking-wide uppercase">Birthdate (Solar)</label>
+                        <label class="block text-sm font-bold text-fionynavy mb-4 tracking-wide">생년월일 입력 (양력 기준)</label>
                         <div class="grid grid-cols-3 gap-3">
                             <select id="birth-year" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
                                 <option value="" disabled selected>년</option>
@@ -84,8 +84,8 @@
                     </div>
 
                     <button type="submit" 
-                            class="w-full bg-fionynavy text-white font-bold py-5 rounded-2xl hover:bg-slate-800 active:scale-[0.98] transition-all text-lg shadow-xl shadow-slate-200 uppercase tracking-widest">
-                        Check Results
+                            class="w-full bg-fionynavy text-white font-bold py-5 rounded-2xl hover:bg-slate-800 active:scale-[0.98] transition-all text-lg shadow-xl shadow-slate-200 tracking-widest">
+                        진단 결과 확인하기
                     </button>
                 </form>
             </div>
@@ -108,22 +108,22 @@
                     
                     <div class="p-8 space-y-8">
                         <div class="text-center">
-                            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-2">Lucky Brand Color</p>
+                            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-2">성공을 부르는 브랜드 컬러</p>
                             <p id="result-colors" class="text-2xl font-black text-fionynavy">포레스트 그린 & 세이지</p>
                         </div>
 
                         <div class="grid grid-cols-1 gap-4">
                             <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                                <p class="text-xs font-black text-slate-400 mb-2 tracking-tighter uppercase">Brand Keywords</p>
+                                <p class="text-xs font-black text-slate-400 mb-2 tracking-tighter uppercase">브랜드 키워드</p>
                                 <p id="result-keywords" class="font-bold text-fionynavy text-lg">신뢰, 곧음, 생명력</p>
                             </div>
 
                             <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                                <p class="text-xs font-black text-slate-400 mb-3 tracking-tighter uppercase">Personal Insight</p>
+                                <p class="text-xs font-black text-slate-400 mb-3 tracking-tighter uppercase">맞춤형 인사이트</p>
                                 <p id="result-message" class="text-[14px] text-slate-600 font-medium leading-relaxed break-keep">
                                     분석 결과가 여기에 표시됩니다.
                                 </p>
-                                <!-- Disclaimer Added Here -->
+                                <!-- Disclaimer -->
                                 <p class="mt-4 text-[11px] text-slate-400 leading-normal border-t border-slate-200 pt-3">
                                     * 본 진단 내용은 일주(日柱)를 기반으로 한 대략적인 가이드입니다. 비즈니스 환경과 전체 명식을 고려한 구체적이고 정밀한 분석은 전문 컨설팅을 통해 확인하실 수 있습니다.
                                 </p>
@@ -137,7 +137,7 @@
                                 1:1 브랜드 컨설팅 신청하기
                             </a>
                             <button onclick="resetForm()" class="block w-full text-center text-xs font-black text-slate-900 hover:opacity-70 tracking-[0.3em] uppercase transition-all py-2">
-                                다시 테스트 해보기
+                                다시 테스트하기
                             </button>
                         </div>
                     </div>
