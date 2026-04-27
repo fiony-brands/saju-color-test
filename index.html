@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>나의 사주 브랜드 컬러 찾기 | FIONY BRANDS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -10,14 +10,14 @@
             theme: {
                 extend: {
                     colors: {
-                        deepgreen: '#0A1F1C',
+                        fionynavy: '#0F172A', // Deep Navy
+                        fionylightnavy: '#1E293B',
                         peonypink: '#D95C7A',
-                        ivory: '#FCFAF2',
                         wood: '#2E4C3B',
                         fire: '#B22222',
                         earth: '#8B5A2B',
-                        metal: '#708090',
-                        water: '#191970',
+                        metal: '#475569',
+                        water: '#1E3A8A',
                     },
                     fontFamily: {
                         sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'],
@@ -28,94 +28,124 @@
     </script>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        body { background-color: #f9f9f9; }
+        body { background-color: #ffffff; -webkit-tap-highlight-color: transparent; }
         
-        /* 로딩 스피너 애니메이션 */
+        /* 모바일 최적화 셀렉트 박스 스타일 */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1em;
+        }
+
         .spinner {
-            border: 4px solid rgba(217, 92, 122, 0.1);
-            width: 48px;
-            height: 48px;
+            border: 3px solid rgba(15, 23, 42, 0.1);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            border-left-color: #D95C7A;
+            border-left-color: #0F172A;
             animation: spin 1s linear infinite;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased min-h-screen flex flex-col selection:bg-peonypink selection:text-white">
+<body class="font-sans text-slate-900 antialiased min-h-screen flex flex-col selection:bg-peonypink selection:text-white">
 
     <!-- Header -->
-    <header class="w-full bg-white shadow-sm py-4 px-6 text-center">
-        <h1 class="text-peonypink font-bold tracking-widest text-lg">FIONY BRANDS</h1>
+    <header class="w-full bg-white py-6 px-6 text-center border-b border-slate-100">
+        <h1 class="text-fionynavy font-black tracking-[0.2em] text-xl">FIONY BRANDS</h1>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow flex items-center justify-center p-4">
-        <div class="bg-white max-w-md w-full rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-8">
+        <div class="max-w-md w-full">
             
             <!-- Step 1: Input Form -->
-            <div id="step-input" class="p-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-2xl font-extrabold text-deepgreen mb-2">나의 사주<br>브랜드 컬러 찾기</h2>
-                    <p class="text-gray-500 text-sm">생년월일을 입력하면 내 운을 틔워줄<br>맞춤 용신 컬러를 알려드립니다.</p>
+            <div id="step-input" class="animate-in fade-in duration-700">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-black text-fionynavy mb-3 leading-tight">나의 사주<br>브랜드 컬러 진단</h2>
+                    <p class="text-slate-500 text-base font-medium">당신이 태어난 날의 기운을 분석하여<br><span class="text-fionynavy border-b-2 border-peonypink/30">성공을 부르는 퍼스널 컬러</span>를 찾아드립니다.</p>
                 </div>
 
-                <form id="saju-form" class="space-y-6">
+                <form id="saju-form" class="space-y-8">
                     <div>
-                        <label for="birthdate" class="block text-sm font-semibold text-gray-700 mb-2">생년월일 (양력 기준)</label>
-                        <input type="date" id="birthdate" required 
-                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-peonypink focus:border-peonypink outline-none transition-colors text-gray-700 bg-gray-50">
-                        <p class="text-xs text-gray-400 mt-2">* 정확한 일간(태어난 날) 계산을 위해 양력으로 입력해 주세요.</p>
+                        <label class="block text-sm font-bold text-fionynavy mb-4 tracking-wide uppercase">생년월일 입력 (양력)</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <!-- Year Select -->
+                            <div class="relative">
+                                <select id="birth-year" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
+                                    <option value="" disabled selected>년</option>
+                                </select>
+                            </div>
+                            <!-- Month Select -->
+                            <div class="relative">
+                                <select id="birth-month" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
+                                    <option value="" disabled selected>월</option>
+                                </select>
+                            </div>
+                            <!-- Day Select -->
+                            <div class="relative">
+                                <select id="birth-day" required class="w-full px-3 py-4 rounded-xl border-2 border-slate-100 bg-slate-50 focus:border-fionynavy focus:bg-white outline-none transition-all text-lg font-bold text-slate-700">
+                                    <option value="" disabled selected>일</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" 
-                            class="w-full bg-deepgreen text-white font-bold py-4 rounded-lg hover:bg-gray-900 transition-colors shadow-md">
-                        내 브랜드 컬러 확인하기
+                            class="w-full bg-fionynavy text-white font-bold py-5 rounded-2xl hover:bg-slate-800 active:scale-[0.98] transition-all text-lg shadow-xl shadow-slate-200">
+                        진단 결과 확인하기
                     </button>
                 </form>
             </div>
 
-            <!-- Step 2: Loading (Hidden by default) -->
-            <div id="step-loading" class="p-12 hidden flex flex-col items-center justify-center text-center">
-                <div class="spinner mb-6"></div>
-                <h3 class="text-lg font-bold text-deepgreen mb-2">명식을 분석하고 있습니다</h3>
-                <p class="text-gray-500 text-sm animate-pulse">우주의 기운을 읽어내는 중...</p>
+            <!-- Step 2: Loading -->
+            <div id="step-loading" class="hidden flex flex-col items-center justify-center text-center py-20">
+                <div class="spinner mb-8"></div>
+                <h3 class="text-xl font-bold text-fionynavy mb-2">고객님의 명식을 분석 중입니다</h3>
+                <p class="text-slate-400 text-sm font-medium">FIONY의 알고리즘이 우주의 기운을 읽고 있습니다...</p>
             </div>
 
-            <!-- Step 3: Result (Hidden by default) -->
-            <div id="step-result" class="hidden">
-                <div id="result-header" class="px-8 py-6 text-white text-center">
-                    <h3 class="text-sm font-medium opacity-90 mb-1">당신의 기운은</h3>
-                    <h2 id="result-element" class="text-3xl font-extrabold tracking-tight">木 (목)</h2>
-                </div>
-                
-                <div class="p-8 space-y-6">
-                    <div class="text-center pb-6 border-b border-gray-100">
-                        <p class="text-sm text-gray-500 font-semibold mb-1">운을 부르는 시그니처 컬러</p>
-                        <p id="result-colors" class="text-xl font-bold text-gray-800">포레스트 그린 & 세이지</p>
+            <!-- Step 3: Result -->
+            <div id="step-result" class="hidden animate-in zoom-in-95 duration-500">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+                    <div id="result-header" class="px-8 py-10 text-white text-center transition-colors duration-1000">
+                        <p class="text-xs font-bold tracking-[0.3em] uppercase opacity-80 mb-2">Diagnosis Result</p>
+                        <h3 class="text-lg font-medium opacity-90 mb-1">당신의 기운은</h3>
+                        <h2 id="result-element" class="text-4xl font-black tracking-tight">木 (목)</h2>
                     </div>
+                    
+                    <div class="p-8 space-y-8">
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400 font-bold tracking-widest uppercase mb-2">Lucky Brand Color</p>
+                            <p id="result-colors" class="text-2xl font-black text-fionynavy">포레스트 그린 & 세이지</p>
+                        </div>
 
-                    <div>
-                        <p class="text-sm font-bold text-gray-400 mb-2">💡 브랜드 키워드</p>
-                        <p id="result-keywords" class="font-medium text-gray-800">신뢰, 곧음, 생명력</p>
-                    </div>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                                <p class="text-xs font-black text-slate-400 mb-2 tracking-tighter uppercase">Brand Keywords</p>
+                                <p id="result-keywords" class="font-bold text-fionynavy text-lg">신뢰, 곧음, 생명력</p>
+                            </div>
 
-                    <div class="bg-gray-50 rounded-lg p-5">
-                        <p class="text-sm font-bold text-gray-400 mb-2">📜 맞춤 진단 메시지</p>
-                        <p id="result-message" class="text-sm text-gray-700 leading-relaxed">
-                            당신의 브랜드는 뿌리 깊은 나무입니다...
-                        </p>
-                    </div>
+                            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                                <p class="text-xs font-black text-slate-400 mb-3 tracking-tighter uppercase">Personal Insight</p>
+                                <p id="result-message" class="text-[15px] text-slate-600 font-medium leading-relaxed break-keep">
+                                    분석 결과가 여기에 표시됩니다.
+                                </p>
+                            </div>
+                        </div>
 
-                    <!-- CTA Button -->
-                    <div class="pt-4">
-                        <a href="https://www.instagram.com/fiony.brands/" target="_blank" 
-                           class="block w-full bg-peonypink text-white text-center font-bold py-4 rounded-lg hover:bg-pink-600 transition-colors shadow-md">
-                            1:1 브랜드 컨설팅 신청하기
-                        </a>
-                        <button onclick="resetForm()" class="block w-full text-center text-sm text-gray-400 mt-4 hover:text-gray-600 underline">
-                            다시 테스트하기
-                        </button>
+                        <!-- CTA Button -->
+                        <div class="pt-4 space-y-4">
+                            <a href="https://www.instagram.com/fiony.brands/" target="_blank" 
+                               class="block w-full bg-peonypink text-white text-center font-bold py-5 rounded-2xl hover:bg-pink-600 active:scale-[0.98] transition-all shadow-lg shadow-pink-100">
+                                1:1 브랜드 컨설팅 신청하기
+                            </a>
+                            <button onclick="resetForm()" class="block w-full text-center text-xs font-bold text-slate-300 hover:text-slate-500 tracking-widest uppercase transition-colors">
+                                RE-TEST
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,75 +153,88 @@
         </div>
     </main>
 
-    <footer class="w-full text-center py-6 text-xs text-gray-400">
-        <p>© 2026 FIONY BRANDS. All rights reserved.</p>
+    <footer class="w-full text-center py-10 text-[10px] font-bold text-slate-300 tracking-[0.2em] uppercase">
+        <p>© 2026 FIONY BRANDS. PRIVATE & CONFIDENTIAL.</p>
     </footer>
 
     <script>
-        // 오행별 결과 데이터 베이스 (HTML 문서 기준)
+        // 날짜 선택기 데이터 생성 (1950 ~ 현재 연도)
+        const yearSelect = document.getElementById('birth-year');
+        const monthSelect = document.getElementById('birth-month');
+        const daySelect = document.getElementById('birth-day');
+        const currentYear = new Date().getFullYear();
+
+        for (let i = currentYear; i >= 1950; i--) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            yearSelect.appendChild(opt);
+        }
+
+        for (let i = 1; i <= 12; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            monthSelect.appendChild(opt);
+        }
+
+        for (let i = 1; i <= 31; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            daySelect.appendChild(opt);
+        }
+
         const elementData = {
             '木': {
                 name: '木 (성장과 뿌리의 기운)',
                 bgClass: 'bg-wood',
                 colors: '포레스트 그린 & 세이지',
                 keywords: '신뢰, 곧음, 생명력',
-                message: '당신의 브랜드는 뿌리 깊은 나무입니다. 가벼운 유행을 좇기보다 묵직한 신뢰를 시각화할 때 가장 높이 성장합니다. 포레스트 그린의 깊이와 세이지 톤의 편안함이 당신의 기운을 보호하고 비즈니스를 단단하게 키워냅니다.'
+                message: '당신의 브랜드는 뿌리 깊은 나무와 같습니다. 가벼운 유행을 좇기보다 묵직한 신뢰를 시각화할 때 가장 높이 성장합니다. 포레스트 그린의 깊이와 세이지 톤의 편안함이 당신의 기운을 보호하고 비즈니스를 단단하게 키워냅니다.'
             },
             '火': {
                 name: '火 (확산과 열정의 기운)',
                 bgClass: 'bg-fire',
                 colors: '비비드 레드 & 딥 버건디',
                 keywords: '매력, 발산, 재탄생',
-                message: '단단하게 굳어버린 땅을 녹이고, 정체된 기운을 태우는 \'재탄생(Rebirth)\'의 불꽃입니다. 무난한 무채색 속에 숨지 마세요. 비비드 레드와 딥 버건디로 당신의 매력을 과감하게 발산할 때 비로소 고객을 강렬하게 끌어당깁니다.'
+                message: '정체된 기운을 태우고 새롭게 일어서는 재탄생의 불꽃입니다. 무난한 무채색 속에 숨지 마세요. 비비드 레드와 딥 버건디로 당신의 열정과 에너지를 과감하게 발산할 때 비로소 고객을 강력하게 끌어당깁니다.'
             },
             '土': {
                 name: '土 (포용과 안정의 기운)',
                 bgClass: 'bg-earth',
                 colors: '어스 브라운 & 웜 베이지',
                 keywords: '중심, 따뜻함, 무게감',
-                message: '모든 것을 품어내는 넓은 땅처럼, 고객에게 편안함과 든든함을 주는 웜 베이지와 어스 브라운이 당신의 무기가 됩니다. 화려한 장식보다 여백의 미와 따뜻한 온도를 살릴 때 브랜드의 품격이 완성됩니다.'
+                message: '모든 것을 품어내는 넓은 땅처럼, 고객에게 안정감을 주는 웜 베이지와 어스 브라운이 당신의 무기가 됩니다. 화려한 장식보다 여백의 미와 따뜻한 온도를 살릴 때 브랜드의 독보적인 품격이 완성됩니다.'
             },
             '金': {
                 name: '金 (정밀과 결단의 기운)',
                 bgClass: 'bg-metal',
                 colors: '실버 & 차콜 모노크롬',
                 keywords: '전문성, 예리함, 하이엔드',
-                message: '불필요한 것을 덜어내는 정밀한 결단력. 실버와 차콜 모노크롬의 군더더기 없는 미니멀하고 날카로운 디자인이 브랜드의 전문성을 극대화합니다. 차갑지만 가장 세련된 하이엔드 무드가 어울리는 명식입니다.'
+                message: '불필요한 것을 덜어내는 정밀한 결단력이 핵심입니다. 실버와 차콜 모노크롬의 미니멀하고 날카로운 디자인이 당신의 전문성을 극대화합니다. 차갑지만 가장 세련된 하이엔드 무드가 어울리는 명식입니다.'
             },
             '水': {
                 name: '水 (유연과 지혜의 기운)',
                 bgClass: 'bg-water',
                 colors: '딥 네이비 & 미드나이트',
                 keywords: '깊이, 유연함, 연결',
-                message: '어디로든 유연하게 스며드는 물의 지혜. 얕고 가벼운 톤보다는 깊이감 있는 딥 네이비와 미드나이트 블루를 활용해 진정성을 시각화하세요. 당신의 철학적 깊이가 타겟의 마음을 가장 깊게 움직입니다.'
+                message: '어디로든 유연하게 스며드는 물의 지혜를 가졌습니다. 얕고 가벼운 톤보다는 깊이감 있는 딥 네이비와 미드나이트 블루를 활용해 진정성을 시각화하세요. 당신의 철학적 깊이가 타겟의 마음을 가장 깊게 움직입니다.'
             }
         };
 
-        // DOM Elements
         const form = document.getElementById('saju-form');
         const stepInput = document.getElementById('step-input');
         const stepLoading = document.getElementById('step-loading');
         const stepResult = document.getElementById('step-result');
 
-        // 사주 일간(Day Master) 계산 알고리즘 (기준일: 2000년 1월 1일은 '무오(戊午)'일 -> 천간 인덱스 4: 戊(토))
-        function calculateOhaeng(dateString) {
-            // 1. 기준일 설정 (UTC 기준 자정으로 맞춰 시간차 오차 방지)
+        function calculateOhaeng(y, m, d) {
             const anchorDate = new Date(Date.UTC(2000, 0, 1)); 
-            
-            // 2. 입력일 파싱 (YYYY-MM-DD)
-            const parts = dateString.split('-');
-            const targetDate = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
-            
-            // 3. 두 날짜 사이의 일수 차이 계산
+            const targetDate = new Date(Date.UTC(y, m - 1, d));
             const diffTime = targetDate.getTime() - anchorDate.getTime();
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            
-            // 4. 10천간(갑을병정무기경신임계) 인덱스 도출
-            // 기준일(2000-01-01)은 '무(戊)'이므로 인덱스 4.
-            // 자바스크립트의 음수 모듈로 연산 버그를 방지하기 위해 ((x % 10) + 10) % 10 사용
             const stemIndex = ((diffDays + 4) % 10 + 10) % 10;
             
-            // 5. 오행 매핑 (0,1:목 / 2,3:화 / 4,5:토 / 6,7:금 / 8,9:수)
             if (stemIndex === 0 || stemIndex === 1) return '木';
             if (stemIndex === 2 || stemIndex === 3) return '火';
             if (stemIndex === 4 || stemIndex === 5) return '土';
@@ -201,36 +244,36 @@
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const birthdate = document.getElementById('birthdate').value;
-            
-            if(!birthdate) return;
+            const y = yearSelect.value;
+            const m = monthSelect.value;
+            const d = daySelect.value;
 
-            // 1. 오행 계산
-            const elementKey = calculateOhaeng(birthdate);
+            const elementKey = calculateOhaeng(y, m, d);
             const data = elementData[elementKey];
 
-            // 2. UI 전환 (입력폼 닫고 로딩 켜기)
             stepInput.classList.add('hidden');
             stepLoading.classList.remove('hidden');
 
-            // 3. 결과 페이지 데이터 주입
-            document.getElementById('result-header').className = `px-8 py-6 text-white text-center ${data.bgClass}`;
+            document.getElementById('result-header').className = `px-8 py-10 text-white text-center ${data.bgClass}`;
             document.getElementById('result-element').innerText = data.name;
             document.getElementById('result-colors').innerText = data.colors;
             document.getElementById('result-keywords').innerText = data.keywords;
             document.getElementById('result-message').innerText = data.message;
 
-            // 4. 가짜 로딩 지연 (사용자에게 '분석 중'이라는 심리적 기대감 부여)
             setTimeout(() => {
                 stepLoading.classList.add('hidden');
                 stepResult.classList.remove('hidden');
-            }, 1800);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1500);
         });
 
         function resetForm() {
-            document.getElementById('birthdate').value = '';
+            yearSelect.value = "";
+            monthSelect.value = "";
+            daySelect.value = "";
             stepResult.classList.add('hidden');
             stepInput.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
